@@ -47,7 +47,9 @@ Returns a new object with all the pathnames formatted. This method accepts the f
 - `url_obj`: a [url object](https://nodejs.org/api/url.html#url_url_strings_and_url_objects) with the API host information. 
 - `api`: an object with all the paths strings of your RESTful API service.
 - `opt` (optionally): an object with the options:
-  - `prefix`: 
+  - `find`: a regular expression to find the pattern parameters. Default is set to find the parameters starting with `:`.
+  - `prefix`: the formatted pattern parameter prefix. Default is `{`. 
+  - `suffix`: the formatted pattern parameter suffix. Default is `}`.
 
 ## License
 
