@@ -1,0 +1,11 @@
+{
+  "name": "url-api",
+  "description": "",
+  "version": "0.0.1",
+  "keywords": [ "url", "api" ],
+  "author": "Josemi Juanes <josemijuanes@gmail.com>",
+  "main": "./index.js",
+  "repository": { "type": "git", "url": "https://github.com/jmjuanes/url-api" },
+  "dependencies": { },
+  "license": "MIT"
+}
