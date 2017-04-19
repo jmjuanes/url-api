@@ -28,7 +28,7 @@ module.exports = function(url_obj, api)
     });
 
     //Join the url
-    out[key] = url.resolve(href, '/') + full_url.join('/');
+    out[key] = href + full_url.join('/');
   });
 
   //Return the formatted url api
