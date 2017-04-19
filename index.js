@@ -2,10 +2,22 @@
 var url = require('url');
 
 //Build the api urls
-module.exports = function(url_obj, api)
+module.exports = function(obj, api, opt)
 {
+  //Check the options
+  if(typeof opt !== 'object'){ var opt = {}; }
+
+  //Check the find pattern
+  if(typeof opt.find !== 'string'){ opt.find = /\:(\w*)/g; }
+
+  //Check the prefix value
+  if(typeof opt.prefix !== 'string'){ opt.prefix = '{'; }
+
+  //Check the suffix value
+  if(typeof opt.suffix !== 'string'){ opt.suffix = '}'; }
+
   //Build the url
-  var href = url.format(url_obj);
+  var href = url.format(obj);
 
   //Output json
   var out = {};
@@ -16,15 +28,12 @@ module.exports = function(url_obj, api)
     //Get the full url and split by /, then replace :path with {path}
     var full_url = api[key].split('/').map(function(el)
     {
-      //Check the first character
-      if(el.charAt(0) === ':')
+      //Find the patterns
+      return el.replace(opt.find, function(match, patt)
       {
-        //Remove the ':' and add the brackets
-        el = '{' + el.slice(1) + '}';
-      }
-
-      //Return the parsed uri
-      return el;
+        //Replace it
+        return opt.prefix + patt + opt.suffix;
+      });
     });
 
     //Join the url
