@@ -19,6 +19,9 @@ module.exports = function(obj, api, opt)
   //Build the url
   var href = url.format(obj);
 
+  //Check the href value
+  if(href.charAt(href.length - 1) === '/'){ href = href.slice(0, -1); }
+
   //Output json
   var out = {};
 
@@ -28,16 +31,22 @@ module.exports = function(obj, api, opt)
     //Get the full url and split by /, then replace :path with {path}
     var full_url = api[key].split('/').map(function(el)
     {
+      //Check for empty string
+      if(el.trim() === ''){ return ''; }
+      
       //Find the patterns
-      return el.replace(opt.find, function(match, patt)
+      return el.trim().replace(opt.find, function(match, patt)
       {
         //Replace it
         return opt.prefix + patt + opt.suffix;
       });
-    });
+    }).join('/');
 
-    //Join the url
-    out[key] = href + full_url.join('/');
+    //Check the first slash
+    if(full_url.charAt(0) !== '/'){ full_url = '/' + full_url; }
+
+    //Save the new url
+    out[key] = href + full_url;
   });
 
   //Return the formatted url api
