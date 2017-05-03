@@ -33,7 +33,7 @@ module.exports = function(obj, api, opt)
     {
       //Check for empty string
       if(el.trim() === ''){ return ''; }
-      
+
       //Find the patterns
       return el.trim().replace(opt.find, function(match, patt)
       {
