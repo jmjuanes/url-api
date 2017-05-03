@@ -1,7 +1,7 @@
 {
   "name": "url-api",
   "description": "Format and generate the urls for an API service ",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "keywords": [ "url", "api" ],
   "author": "Josemi Juanes <josemijuanes@gmail.com>",
   "main": "./index.js",
